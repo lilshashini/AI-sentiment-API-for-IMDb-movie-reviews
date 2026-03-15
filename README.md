@@ -214,11 +214,13 @@ Response (400 Bad Request):
 
 ## Sentiment Classification Logic
 
-The model returns sentiments based on the following thresholds:
+The model returns sentiments based on the following probability thresholds for the predicted positive sentiment:
 
-- **Positive:** Probability of positive sentiment ≥ 0.60
-- **Negative:** Probability of positive sentiment ≤ 0.40
-- **Neutral:** Probability between 0.40 and 0.60
+- **Positive:** Probability of positive sentiment > 0.60
+- **Negative:** Probability of positive sentiment < 0.40
+- **Neutral:** Probability between 0.40 and 0.60 (model uncertainty zone)
+
+When the model's confidence is in the 0.40-0.60 range, it indicates the model is uncertain between positive and negative, so the text is classified as neutral.
 
 ## Project Structure
 
@@ -232,7 +234,9 @@ ai-sentiment-api/
 ├── model/
 │   └── sentiment_model.pkl       # Trained model (generated after running train.py)
 └── app/
-    ├── main.py                   # FastAPI application
+    ├── __init__.py               # Package initialization
+    ├── main.py                   # FastAPI application and route handlers
+    ├── model.py                  # Model loading and prediction logic
     └── schemas.py                # Pydantic request/response models
 ```
 
