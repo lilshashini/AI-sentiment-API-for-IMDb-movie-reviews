@@ -150,6 +150,13 @@ def predict_batch(request: BatchPredictionRequest):
         }
     """
     try:
+        # Edge-case handling: Reject empty lists with 400 error
+        if not request.texts or len(request.texts) == 0:
+            raise HTTPException(
+                status_code=400,
+                detail="The 'texts' list cannot be empty. Please provide at least one text to analyze."
+            )
+        
         # Process all texts and collect predictions
         predictions = []
         for text in request.texts:

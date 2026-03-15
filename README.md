@@ -109,6 +109,109 @@ Response:
 }
 ```
 
+### Batch Predictions
+
+Analyze multiple texts in a single request for better efficiency.
+
+**Using curl:**
+```bash
+curl -X POST "http://127.0.0.1:8000/predict/batch" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "texts": [
+      "I absolutely love this product!",
+      "This is terrible, worst purchase ever.",
+      "It is okay, nothing special.",
+      "Amazing quality and fast shipping!"
+    ]
+  }'
+```
+
+Response:
+```json
+{
+  "results": [
+    {
+      "text": "I absolutely love this product!",
+      "sentiment": "positive",
+      "confidence": 0.96
+    },
+    {
+      "text": "This is terrible, worst purchase ever.",
+      "sentiment": "negative",
+      "confidence": 0.91
+    },
+    {
+      "text": "It is okay, nothing special.",
+      "sentiment": "neutral",
+      "confidence": 0.58
+    },
+    {
+      "text": "Amazing quality and fast shipping!",
+      "sentiment": "positive",
+      "confidence": 0.94
+    }
+  ],
+  "count": 4
+}
+```
+
+**Using Python:**
+```python
+import requests
+import json
+
+url = "http://127.0.0.1:8000/predict/batch"
+payload = {
+    "texts": [
+        "I love this!",
+        "Hate it!",
+        "It's okay.",
+        "Fantastic product!"
+    ]
+}
+
+response = requests.post(url, json=payload)
+result = response.json()
+
+# Print results with sentiment and confidence
+for pred in result["results"]:
+    print(f"Text: {pred['text']}")
+    print(f"  Sentiment: {pred['sentiment']} | Confidence: {pred['confidence']}")
+    print()
+```
+
+Output:
+```
+Text: I love this!
+  Sentiment: positive | Confidence: 0.95
+
+Text: Hate it!
+  Sentiment: negative | Confidence: 0.93
+
+Text: It's okay.
+  Sentiment: neutral | Confidence: 0.55
+
+Text: Fantastic product!
+  Sentiment: positive | Confidence: 0.97
+```
+
+**Edge Cases:**
+
+Empty list returns 400 error:
+```bash
+curl -X POST "http://127.0.0.1:8000/predict/batch" \
+  -H "Content-Type: application/json" \
+  -d '{"texts": []}'
+```
+
+Response (400 Bad Request):
+```json
+{
+  "detail": "The 'texts' list cannot be empty. Please provide at least one text to analyze."
+}
+```
+
 ## Sentiment Classification Logic
 
 The model returns sentiments based on the following thresholds:
