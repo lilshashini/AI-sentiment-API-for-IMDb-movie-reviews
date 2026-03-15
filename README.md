@@ -145,6 +145,61 @@ If I had more time, I would: (1) implement a neural network-based approach (e.g.
 - Ensure the `model/sentiment_model.pkl` file exists before starting the API (run `python train.py` first).
 - The API uses Pydantic for request/response validation, ensuring type safety.
 
+## Sources & Citations
+
+### Frameworks & Libraries
+- **FastAPI**: Starlette-based web framework for building APIs with Python type hints
+  - https://fastapi.tiangolo.com/
+  - Tiangolo. "FastAPI." Available at https://fastapi.tiangolo.com/
+
+- **Scikit-learn**: Machine learning library for classification and feature extraction
+  - https://scikit-learn.org/
+  - Pedregosa et al. "Scikit-learn: Machine Learning in Python." Journal of Machine Learning Research, vol. 12, pp. 2825-2830, 2011.
+
+- **Pandas**: Data manipulation and analysis library
+  - https://pandas.pydata.org/
+  - McKinney, W. "Data Structures for Statistical Computing in Python." In Proceedings of the 9th Python in Science Conference (SciPy 2010), pp. 51-56.
+
+- **Uvicorn**: ASGI server for running FastAPI applications
+  - https://www.uvicorn.org/
+
+- **Pydantic**: Data validation library for Python using type hints
+  - https://docs.pydantic.dev/
+  - https://github.com/pydantic/pydantic
+
+### Machine Learning Techniques
+- **TF-IDF (Term Frequency-Inverse Document Frequency)**: Text vectorization approach
+  - Sparck Jones, K. "A Statistical Interpretation of Term Specificity and Its Application in Retrieval." Journal of Documentation, vol. 28, no. 1, pp. 11-21, 1972.
+
+- **Logistic Regression**: Linear classification algorithm
+  - Bishop, C. M. Pattern Recognition and Machine Learning. Springer-Verlag, 2006.
+
+- **Train-Test Split**: Model evaluation methodology
+  - James, G., Witten, D., Hastie, T., & Tibshirani, R. "An Introduction to Statistical Learning." Springer, 2013.
+
+### Dataset
+- **IMDB Movie Reviews Dataset**: Used for training sentiment classification model
+  - Maas, A. L., Daly, R. E., Pham, P. T., Huang, D., Ng, A. Y., & Potts, C. "Learning Word Vectors for Sentiment Analysis." In Proceedings of the ACL-HLT 2011 Conference, pp. 142-150.
+  - Available at: https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews
+
+### API Design & Best Practices
+- **RESTful API Design**: API endpoint design principles
+  - https://restfulapi.net/
+
+- **Pydantic Documentation**: Request/response validation
+  - https://docs.pydantic.dev/
+
+- **FastAPI Tutorial & Documentation**: Building async APIs with Python
+  - https://fastapi.tiangolo.com/tutorial/
+
+### Other Resources
+- **Python Virtual Environments**: Dependency isolation and environment management
+  - https://docs.python.org/3/tutorial/venv.html
+
+- **Git & GitHub**: Version control and repository management
+  - https://git-scm.com/doc
+  - https://docs.github.com/
+
 ---
 
 **Happy sentiment analyzing!** 🚀
